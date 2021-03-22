@@ -3,3 +3,4 @@
 /.idea/
 /ios/Flutter/flutter_export_environment.sh
 /ios/Flutter/Generated.xcconfig
+/build/
