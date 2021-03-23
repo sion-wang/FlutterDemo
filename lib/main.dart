@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_demo/bloc/home/home_bloc.dart';
 
 import 'bloc/splash/splash_bloc.dart';
 import 'model/api/bean/config_data.dart';
@@ -9,10 +10,7 @@ import 'page/splash_page.dart';
 
 void main() {
   var configProvider = ConfigProvider(
-    data: ConfigData(
-      flavor: 'dev',
-      apiBaseUrl: 'api.github.com'
-    ),
+    data: ConfigData(flavor: 'dev', apiBaseUrl: 'api.github.com'),
     child: App(),
   );
   runApp(configProvider);
@@ -23,25 +21,28 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     ConfigData _configData = ConfigProvider.of(context).data;
 
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: Colors.black,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: MultiRepositoryProvider(
+    return MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider(
+              create: (context) => ApiRepository(_configData.apiBaseUrl)),
+        ],
+        child: MultiBlocProvider(
             providers: [
-              RepositoryProvider(create: (context) => ApiRepository(_configData.apiBaseUrl)),
+              BlocProvider(
+                  create: (context) => SplashBloc(
+                      apiRepository:
+                          RepositoryProvider.of<ApiRepository>(context))),
+              BlocProvider(
+                  create: (context) => HomeBloc(
+                      apiRepository:
+                          RepositoryProvider.of<ApiRepository>(context))),
             ],
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                    create: (context) => SplashBloc(
-                        apiRepository: RepositoryProvider.of<ApiRepository>(context))),
-              ],
-              child: SplashPage(
-                title: "Hello",
+            child: MaterialApp(
+              theme: ThemeData(
+                primaryColor: Colors.black,
               ),
+              debugShowCheckedModeBanner: false,
+              home: SplashPage(),
             )));
   }
 }

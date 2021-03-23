@@ -10,21 +10,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   SplashBloc({@required this.apiRepository}) : super(SplashInitState());
 
-  // @override
-  // Stream<Transition<SplashEvent, SplashState>> transformEvents(
-  //     Stream<SplashEvent> events,
-  //     TransitionFunction<SplashEvent, SplashState> transitionFn,
-  //     ) {
-  //   return super.transformEvents(
-  //     events.distinct(const Duration(milliseconds: 500)),
-  //     transitionFn,
-  //   );
-  // }
-
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
     if(event is SplashFetchEvent) {
-      final users = await apiRepository.fetchUsers();
+      final users = await Future.delayed(Duration(seconds: 6));
       yield SplashLoadedState(users);
       return;
     } else {
