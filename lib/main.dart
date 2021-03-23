@@ -33,7 +33,6 @@ class App extends StatelessWidget {
             providers: [
               RepositoryProvider(create: (context) => ApiRepository(_configData.apiBaseUrl)),
             ],
-            // create: (context) => ApiProvider('api.github.com'),
             child: MultiBlocProvider(
               providers: [
                 BlocProvider(

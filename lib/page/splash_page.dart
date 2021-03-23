@@ -4,6 +4,10 @@ import 'package:flutter_demo/bloc/splash/splash_bloc.dart';
 import 'package:flutter_demo/bloc/splash/splash_event.dart';
 import 'package:flutter_demo/bloc/splash/splash_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_demo/model/api/api_repository.dart';
+import 'package:flutter_demo/model/api/bean/config_data.dart';
+import 'package:flutter_demo/model/config_provider.dart';
+import 'package:flutter_demo/page/home_page.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key key, this.title}) : super(key: key);
@@ -26,27 +30,27 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-
+    ConfigData _configData = ConfigProvider.of(context).data;
     return BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
       debugPrint('build: $state');
-      if(state is SplashLoadedState) {
+      if (state is SplashLoadedState) {
         debugPrint('@@${state.users}');
       }
       return Scaffold(
-        appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-        ),
+        backgroundColor: Colors.black,
         body: Center(
-          child: Text("splash"),
-        ),
+            child: IconButton(
+          icon: Icon(
+            Icons.bathtub,
+            color: Colors.pinkAccent,
+          ),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext pageContext) => HomePage()));
+          },
+        )),
       );
     });
   }
