@@ -13,8 +13,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   Stream<HomeState> mapEventToState(HomeEvent event) async* {
     if(event is HomeFetchEvent) {
-      final users = await apiRepository.fetchUsers();
-      yield HomeLoadedState(users);
+      yield HomeLoadedState();
       return;
     } else {
 

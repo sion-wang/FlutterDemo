@@ -11,10 +11,6 @@ abstract class HomeState extends Equatable {
 class HomeInitState extends HomeState {}
 
 class HomeLoadedState extends HomeState {
-  final List<User> users;
-
-  HomeLoadedState(this.users);
-
   @override
-  List<Object> get props => [users,];
+  List<Object> get props => [];
 }

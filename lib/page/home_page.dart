@@ -44,38 +44,43 @@ class _HomePageState extends State<HomePage> {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
         debugPrint('state: $state');
-        if (state is HomeLoadedState) {
-          debugPrint('users: ${state.users}');
-        } else {}
         return Scaffold(
           appBar: AppBar(
             title: Text('Flutter Demo'),
           ),
           resizeToAvoidBottomInset: false,
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _selectedBottomNavigationIndex,
-            items: _bottomNavigationItems
-                .map(
-                  (item) => BottomNavigationBarItem(
-                    icon: Icon(item.iconData),
-                    label: item.label,
-                  ),
-                )
-                .toList(),
-            onTap: (newIndex) => setState(
-              () => _selectedBottomNavigationIndex = newIndex,
-            ),
-          ),
-          body: IndexedStack(
-            index: _selectedBottomNavigationIndex,
-            children: _bottomNavigationItems
-                .map(
-                  (item) => item.widgetBuilder(context),
-                )
-                .toList(),
-          ),
+          bottomNavigationBar: _buildBtmNavBar(),
+          body: _buildBody(),
         );
       },
+    );
+  }
+
+  Widget _buildBtmNavBar() {
+    return BottomNavigationBar(
+      currentIndex: _selectedBottomNavigationIndex,
+      items: _bottomNavigationItems
+          .map(
+            (item) => BottomNavigationBarItem(
+          icon: Icon(item.iconData),
+          label: item.label,
+        ),
+      )
+          .toList(),
+      onTap: (newIndex) => setState(
+            () => _selectedBottomNavigationIndex = newIndex,
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    return IndexedStack(
+      index: _selectedBottomNavigationIndex,
+      children: _bottomNavigationItems
+          .map(
+            (item) => item.widgetBuilder(context),
+      )
+          .toList(),
     );
   }
 }

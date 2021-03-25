@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_demo/bloc/home/home_bloc.dart';
+import 'package:flutter_demo/bloc/user/user_bloc.dart';
 
 import 'bloc/splash/splash_bloc.dart';
 import 'model/api/bean/config_data.dart';
@@ -34,6 +35,10 @@ class App extends StatelessWidget {
                           RepositoryProvider.of<ApiRepository>(context))),
               BlocProvider(
                   create: (context) => HomeBloc(
+                      apiRepository:
+                          RepositoryProvider.of<ApiRepository>(context))),
+              BlocProvider(
+                  create: (context) => UserBloc(
                       apiRepository:
                           RepositoryProvider.of<ApiRepository>(context))),
             ],
