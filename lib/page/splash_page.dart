@@ -37,15 +37,12 @@ class _SplashPageState extends State<SplashPage> {
         }
       },
       child: BlocBuilder<SplashBloc, SplashState>(builder: (context, state) {
-        return Scaffold(
-          backgroundColor: Colors.black,
-          body: Center(
+        return Center(
             child: Container(
               height: 150.0,
               width: 150.0,
               child: Lottie.asset('assets/happy.json'),
             ),
-          ),
         );
       }),);
   }
