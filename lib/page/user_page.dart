@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_demo/bloc/user/user_bloc.dart';
 import 'package:flutter_demo/bloc/user/user_event.dart';
 import 'package:flutter_demo/bloc/user/user_state.dart';
+import 'package:flutter_demo/model/api/bean/user/user.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class UserPage extends StatefulWidget {
   @override
@@ -12,11 +15,16 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   UserBloc _userBloc;
 
+  static const _pageSize = 20;
+  final PagingController<int, User> _pagingController = PagingController(firstPageKey: 0);
+
   @override
   void initState() {
     super.initState();
     _userBloc = BlocProvider.of<UserBloc>(context);
-    _userBloc.add(UserFetchEvent());
+    _pagingController.addPageRequestListener((pageKey) {
+      _userBloc.add(UserFetchEvent(pageKey));
+    });
   }
 
   @override
@@ -24,15 +32,49 @@ class _UserPageState extends State<UserPage> {
 
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        debugPrint('state: $state');
         if (state is UserLoadedState) {
-          debugPrint('users: ${state.users}');
-        } else {}
-        return Center(
-          child: Text('UserPage'),
+          List<User> newItems = state.users;
+          final isLastPage = newItems.length < _pageSize;
+          if (isLastPage) {
+            _pagingController.appendLastPage(newItems);
+          } else {
+            final nextPageKey = newItems.last.id;
+            _pagingController.appendPage(newItems, nextPageKey);
+          }
+        } else {
+
+        }
+        return RefreshIndicator(
+          onRefresh: () => Future.sync(
+                () => _pagingController.refresh(),
+          ),
+          child: PagedListView<int, User>.separated(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<User>(
+              itemBuilder: (context, item, index) => UserListItem(
+                user: item,
+              ),
+            ),
+            separatorBuilder: (context, index) => const Divider(),
+          ),
         );
       },
     );
   }
 
+}
+
+class UserListItem extends StatelessWidget {
+  const UserListItem({
+    @required this.user,
+    Key key,
+  }) : super(key: key);
+
+  final User user;
+
+  @override
+  Widget build(BuildContext context) => ListTile(
+    leading: Icon(Icons.account_balance),
+    title: Text(user.login),
+  );
 }

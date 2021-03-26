@@ -15,9 +15,9 @@ class ApiRepository {
     httpClient = HttpClientWithInterceptor.build(interceptors: [LoggingInterceptor()]);
   }
 
-  Future<List<User>> fetchUsers() async {
+  Future<List<User>> fetchUsers({int since = 0, int perPage = 20}) async {
     final response = await httpClient.get(
-      Uri.https(_baseUrl, "/users"),
+      Uri.https(_baseUrl, "/users", {'since': since.toString(), 'per_page': perPage.toString(),}),
       headers: {"Accept": "application/vnd.github.v3+json"},);
     if (response.statusCode == 200) {
       final data = json.decode(response.body) as List;

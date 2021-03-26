@@ -13,8 +13,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   @override
   Stream<UserState> mapEventToState(UserEvent event) async* {
     if(event is UserFetchEvent) {
-      final users = await apiRepository.fetchUsers();
-      yield UserLoadedState(users);
+      final users = await apiRepository.fetchUsers(since: event.pageKey);
+      yield UserLoadedState(users, event.pageKey);
       return;
     } else {
 
