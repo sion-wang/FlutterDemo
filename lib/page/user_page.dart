@@ -16,7 +16,8 @@ class _UserPageState extends State<UserPage> {
   UserBloc _userBloc;
 
   static const _pageSize = 20;
-  final PagingController<int, User> _pagingController = PagingController(firstPageKey: 0);
+  final PagingController<int, User> _pagingController =
+      PagingController(firstPageKey: 0);
 
   @override
   void initState() {
@@ -29,7 +30,6 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         if (state is UserLoadedState) {
@@ -41,14 +41,12 @@ class _UserPageState extends State<UserPage> {
             final nextPageKey = newItems.last.id;
             _pagingController.appendPage(newItems, nextPageKey);
           }
-        } else if(state is UserFetchFailState) {
-            _pagingController.error = state.error;
-        } else {
-
-        }
+        } else if (state is UserFetchFailState) {
+          _pagingController.error = state.error;
+        } else {}
         return RefreshIndicator(
           onRefresh: () => Future.sync(
-                () => _pagingController.refresh(),
+            () => _pagingController.refresh(),
           ),
           child: PagedListView<int, User>.separated(
             pagingController: _pagingController,
@@ -63,7 +61,6 @@ class _UserPageState extends State<UserPage> {
       },
     );
   }
-
 }
 
 class UserListItem extends StatelessWidget {
@@ -76,7 +73,9 @@ class UserListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-    leading: Icon(Icons.account_balance),
-    title: Text(user.login),
-  );
+        leading: ClipOval(
+          child: Image.network(user.avatarUrl),
+        ),
+        title: Text(user.login),
+      );
 }

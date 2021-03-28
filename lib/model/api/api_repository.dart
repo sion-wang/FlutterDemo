@@ -30,6 +30,7 @@ class ApiRepository {
             id: rawData['id'],
             nodeId: rawData['node_id'],
             gravatarId: rawData['gravatar_id'],
+            avatarUrl: rawData['avatar_url']
           );
         }).toList();
         return ApiResult.success(users);
