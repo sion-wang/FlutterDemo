@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_demo/model/api/api_result.dart';
 import 'package:flutter_demo/model/api/bean/user/user.dart';
 
 abstract class UserState extends Equatable {

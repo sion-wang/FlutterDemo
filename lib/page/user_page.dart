@@ -41,6 +41,8 @@ class _UserPageState extends State<UserPage> {
             final nextPageKey = newItems.last.id;
             _pagingController.appendPage(newItems, nextPageKey);
           }
+        } else if(state is UserFetchFailState) {
+            _pagingController.error = state.error;
         } else {
 
         }
