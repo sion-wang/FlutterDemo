@@ -28,7 +28,7 @@ part 'user.g.dart';
 @JsonSerializable()
 class User extends Equatable {
   @JsonKey(name:'login')
-  final String? login;
+  final String login;
   @JsonKey(name:'id')
   final int id;
   @JsonKey(name:'node_id')

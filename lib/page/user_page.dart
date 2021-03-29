@@ -83,6 +83,7 @@ class UserListItem extends StatelessWidget {
         leading: ClipOval(
           child: Image.network(user.avatarUrl),
         ),
-        title: Text(user.login ?? ""),
+        title: Text(user.login),
+        subtitle: Text(user.type),
       );
 }
