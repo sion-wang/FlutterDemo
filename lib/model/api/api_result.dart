@@ -16,13 +16,13 @@ abstract class ApiResult<T> {
 }
 
 class Success<T> extends ApiResult<T> {
-  T data;
-  Success({@required this.data});
+  T? data;
+  Success({required this.data});
 }
 
 class Error<T> extends ApiResult<T> {
   Exception exception;
-  Error({@required this.exception});
+  Error({required this.exception});
 }
 
 class Loading<T> extends ApiResult<T> {}

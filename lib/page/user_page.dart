@@ -13,7 +13,7 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  UserBloc _userBloc;
+  late UserBloc _userBloc;
 
   static const _pageSize = 20;
   final PagingController<int, User> _pagingController =
@@ -44,6 +44,7 @@ class _UserPageState extends State<UserPage> {
         } else if (state is UserFetchFailState) {
           _pagingController.error = state.error;
         } else {}
+
         return RefreshIndicator(
           onRefresh: () => Future.sync(
             () => _pagingController.refresh(),
@@ -61,12 +62,18 @@ class _UserPageState extends State<UserPage> {
       },
     );
   }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
 }
 
 class UserListItem extends StatelessWidget {
   const UserListItem({
-    @required this.user,
-    Key key,
+    required this.user,
+    Key? key,
   }) : super(key: key);
 
   final User user;
@@ -76,6 +83,6 @@ class UserListItem extends StatelessWidget {
         leading: ClipOval(
           child: Image.network(user.avatarUrl),
         ),
-        title: Text(user.login),
+        title: Text(user.login ?? ""),
       );
 }

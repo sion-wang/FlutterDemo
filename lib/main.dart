@@ -20,12 +20,12 @@ void main() {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ConfigData _configData = ConfigProvider.of(context).data;
+    ConfigData? _configData = ConfigProvider.of(context)?.data;
 
     return MultiRepositoryProvider(
         providers: [
           RepositoryProvider(
-              create: (context) => ApiRepository(_configData.apiBaseUrl)),
+              create: (context) => ApiRepository(baseUrl: _configData?.apiBaseUrl ?? "")),
         ],
         child: MultiBlocProvider(
             providers: [

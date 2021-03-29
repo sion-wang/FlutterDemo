@@ -9,14 +9,14 @@ import 'package:lottie/lottie.dart';
 import 'home_page.dart';
 
 class SplashPage extends StatefulWidget {
-  SplashPage({Key key}) : super(key: key);
+  SplashPage({Key? key}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
 }
 
 class _SplashPageState extends State<SplashPage> {
-  SplashBloc _splashBloc;
+  late SplashBloc _splashBloc;
 
   @override
   void initState() {

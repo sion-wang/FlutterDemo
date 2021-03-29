@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 /// {
 ///     "login": "octocat",
@@ -21,13 +22,21 @@ import 'package:equatable/equatable.dart';
 ///     "site_admin": false
 /// }
 
+@JsonSerializable()
 class User extends Equatable {
-  final String login;
+  @JsonKey(name:'login')
+  final String? login;
+  @JsonKey(name:'id')
   final int id;
+  @JsonKey(name:'node_id')
   final String nodeId;
+  @JsonKey(name:'avatar_url')
   final String avatarUrl;
+  @JsonKey(name:'gravatar_id')
   final String gravatarId;
+  @JsonKey(name:'type')
   final String type;
+  @JsonKey(name:'site_admin')
   final String siteAdmin;
 
   const User({

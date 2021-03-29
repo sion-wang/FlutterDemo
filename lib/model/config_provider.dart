@@ -6,11 +6,11 @@ class ConfigProvider extends InheritedWidget {
   final ConfigData data;
 
   ConfigProvider({
-    @required this.data,
-    @required Widget child,
+    required this.data,
+    required Widget child,
   }) : super(child: child);
 
-  static ConfigProvider of(BuildContext context) {
+  static ConfigProvider? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<ConfigProvider>();
   }
 

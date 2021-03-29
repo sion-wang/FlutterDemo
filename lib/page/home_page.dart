@@ -8,14 +8,14 @@ import 'package:flutter_demo/page/mine_page.dart';
 import 'package:flutter_demo/page/user_page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  HomeBloc _homeBloc;
+  late HomeBloc _homeBloc;
 
   int _selectedBottomNavigationIndex = 0;
 
@@ -87,9 +87,9 @@ class _HomePageState extends State<HomePage> {
 
 class _BottomNavigationItem {
   const _BottomNavigationItem({
-    @required this.label,
-    @required this.iconData,
-    @required this.widgetBuilder,
+    required this.label,
+    required this.iconData,
+    required this.widgetBuilder,
   });
 
   final String label;
