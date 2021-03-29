@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+///run "flutter pub run build_runner build" to generate user.g.dart
+part 'user.g.dart';
+
 /// {
 ///     "login": "octocat",
 ///     "id": 1,
@@ -37,7 +40,7 @@ class User extends Equatable {
   @JsonKey(name:'type')
   final String type;
   @JsonKey(name:'site_admin')
-  final String siteAdmin;
+  final bool siteAdmin;
 
   const User({
     this.login = "",
@@ -46,7 +49,7 @@ class User extends Equatable {
     this.avatarUrl = "",
     this.gravatarId = "",
     this.type = "",
-    this.siteAdmin = "",
+    this.siteAdmin = false,
   });
 
   @override
@@ -56,4 +59,8 @@ class User extends Equatable {
   String toString() {
     return 'User{login: $login, id: $id, nodeId: $nodeId, avatarUrl: $avatarUrl, gravatarId: $gravatarId, type: $type, siteAdmin: $siteAdmin}';
   }
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }

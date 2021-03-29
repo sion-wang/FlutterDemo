@@ -22,21 +22,15 @@ class ApiRepository {
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as List;
         List<User> users =  data.map((rawData) {
-          return User(
-            login: rawData['login'],
-            id: rawData['id'],
-            nodeId: rawData['node_id'],
-            gravatarId: rawData['gravatar_id'],
-            avatarUrl: rawData['avatar_url']
-          );
+          return User.fromJson(rawData);
         }).toList();
         return ApiResult.success(users);
       } else {
         return ApiResult.error(Exception(response.body));
       }
     } catch(error) {
-      debugPrint(error.toString());
-      return ApiResult.error(error as Exception);
+      debugPrint('fetchUsers error: ${error.toString()}');
+      return ApiResult.error(error);
     }
   }
 }

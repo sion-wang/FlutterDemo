@@ -16,7 +16,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       if(result is Success) {
         yield UserLoadedState((result as Success).data, event.pageKey);
       } else {
-        yield UserFetchFailState((result as Error).exception);
+        yield UserFetchFailState((result as Error).error);
       }
     } else {
 

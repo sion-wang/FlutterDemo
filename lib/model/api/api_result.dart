@@ -4,8 +4,8 @@ abstract class ApiResult<T> {
   static ApiResult<T> success<T>(T data) {
     return Success(data: data);
   }
-  static ApiResult<T> error<T>(Exception exception) {
-    return Error(exception: exception);
+  static ApiResult<T> error<T>(dynamic error) {
+    return Error(error: error);
   }
   static ApiResult<T> loading<T>() {
     return Loading();
@@ -21,8 +21,8 @@ class Success<T> extends ApiResult<T> {
 }
 
 class Error<T> extends ApiResult<T> {
-  Exception exception;
-  Error({required this.exception});
+  dynamic error;
+  Error({required this.error});
 }
 
 class Loading<T> extends ApiResult<T> {}
