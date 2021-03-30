@@ -5,3 +5,5 @@
 /ios/Flutter/Generated.xcconfig
 /build/
 /android/.gradle/
+/.flutter-plugins
+/.flutter-plugins-dependencies

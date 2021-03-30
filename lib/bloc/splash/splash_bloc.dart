@@ -11,8 +11,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   @override
   Stream<SplashState> mapEventToState(SplashEvent event) async* {
     if(event is SplashFetchEvent) {
-      final users = await Future.delayed(Duration(seconds: 5));
-      yield SplashLoadedState(users);
+      await Future.delayed(Duration(seconds: 5));
+      yield SplashLoadedState();
       return;
     } else {
 

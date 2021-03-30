@@ -10,11 +10,4 @@ abstract class SplashState extends Equatable {
 
 class SplashInitState extends SplashState {}
 
-class SplashLoadedState extends SplashState {
-  final List<User> users;
-
-  SplashLoadedState(this.users);
-
-  @override
-  List<Object> get props => [users,];
-}
+class SplashLoadedState extends SplashState {}
