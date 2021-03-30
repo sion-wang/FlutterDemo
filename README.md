@@ -4,5 +4,5 @@ This is a project for flutter tools demo.
 
 - Bloc
 - RxDart
-- Http
+- RESTful/GraphQL
 - Pagination
