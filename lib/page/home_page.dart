@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       builder: (context, state) {
-        debugPrint('state: $state');
         return Scaffold(
           appBar: AppBar(
             title: Text('Flutter Demo'),
