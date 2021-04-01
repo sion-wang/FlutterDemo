@@ -1,5 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_demo/model/api/bean/followers/followers.dart';
+import 'package:flutter_demo/model/api/bean/following/following.dart';
 import 'package:flutter_demo/model/api/bean/me/me.dart';
+import 'package:flutter_demo/model/api/bean/starred/starred_repo.dart';
 
 abstract class MineState extends Equatable {
   @override

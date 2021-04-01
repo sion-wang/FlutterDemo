@@ -86,7 +86,11 @@ class _MinePageState extends State<MinePage> {
                   style: TextStyle(fontSize: 15, color: Colors.black45),
                 ),
                 SizedBox(height: 5),
-                Row(children: <Widget>[Icon(Icons.email), Text(" " + me.email)])
+                Row(children: <Widget>[Icon(Icons.email), Text(" " + me.email)]),
+                SizedBox(height: 5),
+                Row(children: <Widget>[Icon(Icons.group), Text(" " + me.followers.totalCount.toString()), Text(' followers · ',
+                  style: TextStyle(color: Colors.black45),), Text(me.following.totalCount.toString()), Text(' following · ',
+                  style: TextStyle(color: Colors.black45),), Icon(Icons.star_border), Text(me.starredRepos.totalCount.toString()),])
               ],
             ),
           ),

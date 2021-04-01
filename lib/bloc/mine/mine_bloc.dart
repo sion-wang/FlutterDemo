@@ -20,7 +20,9 @@ class MineBloc extends Bloc<MineEvent, MineState> {
       if(result.hasException) {
         yield MineFetchFailState(result.exception);
       } else {
+        debugPrint('@@data: $result.data');
         Me me = Me.fromJson(result.data!['viewer']);
+        debugPrint('@@me: $me');
         yield MineLoadedState(me);
       }
     } else {

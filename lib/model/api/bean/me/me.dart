@@ -1,5 +1,8 @@
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter_demo/model/api/bean/followers/followers.dart';
+import 'package:flutter_demo/model/api/bean/following/following.dart';
+import 'package:flutter_demo/model/api/bean/starred/starred_repo.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'me.g.dart';
@@ -37,15 +40,31 @@ class Me extends Equatable {
   final String createdAt;
   @JsonKey(name:'avatarUrl')
   final String avatarUrl;
+  @JsonKey(name: 'followers')
+  final Followers followers;
+  @JsonKey(name: 'following')
+  final Following following;
+  @JsonKey(name: 'starredRepositories')
+  final StarredRepo starredRepos;
 
-  const Me({this.login = "", this.name = "", this.email = "", this.createdAt = "", this.avatarUrl = ""});
+  const Me({
+    this.login = "",
+    this.name = "",
+    this.email = "",
+    this.createdAt = "",
+    this.avatarUrl = "",
+    this.followers = const Followers(),
+    this.following = const Following(),
+    this.starredRepos = const StarredRepo(),
+  });
 
   @override
   List<Object> get props => [login];
 
+
   @override
   String toString() {
-    return 'Me{login: $login, name: $name, email: $email, createdAt: $createdAt, avatarUrl: $avatarUrl}';
+    return 'Me{login: $login, name: $name, email: $email, createdAt: $createdAt, avatarUrl: $avatarUrl, followers: $followers, following: $following, starredRepos: $starredRepos}';
   }
 
   factory Me.fromJson(Map<String, dynamic> json) => _$MeFromJson(json);
