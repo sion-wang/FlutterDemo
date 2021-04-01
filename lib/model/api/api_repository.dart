@@ -11,8 +11,7 @@ import 'package:flutter_demo/model/api/graphql/queries/viewer.dart' as queries;
 import 'bean/user/user.dart';
 
 // to run the example, replace <YOUR_PERSONAL_ACCESS_TOKEN> with your GitHub token
-const String YOUR_PERSONAL_ACCESS_TOKEN =
-    '646937310a30f27d4b95501ed3f6b427d0e29558';
+const String YOUR_PERSONAL_ACCESS_TOKEN = '<YOUR_PERSONAL_ACCESS_TOKEN>';
 
 class ApiRepository {
   String baseUrl;
