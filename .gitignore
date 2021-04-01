@@ -7,3 +7,5 @@
 /android/.gradle/
 /.flutter-plugins
 /.flutter-plugins-dependencies
+/ios/Runner.xcworkspace/xcuserdata/
+/ios/Pods/Pods.xcodeproj/xcuserdata/sion.xcuserdatad/

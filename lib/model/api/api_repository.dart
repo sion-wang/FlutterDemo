@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:gql/language.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_demo/model/api/api_result.dart';
 import 'package:flutter_demo/model/api/logging_interceptor.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

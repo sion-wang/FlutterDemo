@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_demo/bloc/mine/mine_bloc.dart';
 import 'package:flutter_demo/bloc/mine/mine_event.dart';
@@ -43,13 +44,52 @@ class _MinePageState extends State<MinePage> {
       height: double.infinity,
       width: double.infinity,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1)),
-          ClipOval(child: Image.network(me.avatarUrl, width: 100, height: 100,),),
-          Padding(padding: EdgeInsets.only(top: 15)),
-          Text(me.login, style: TextStyle(fontSize: 20),),
-          Text(me.name, style: TextStyle(color: Colors.black45),),
+          // Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1)),
+          Stack(
+            children: [
+              Container(
+                height: 250,
+                width: double.infinity,
+              ),
+              Image.asset(
+                'assets/cover_1.png',
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
+              Positioned(
+                top: 150,
+                left: 20,
+                child: ClipOval(
+                  child: Image.network(
+                    me.avatarUrl,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+              )
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15, left: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  me.name,
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  me.login,
+                  style: TextStyle(fontSize: 15, color: Colors.black45),
+                ),
+                SizedBox(height: 5),
+                Row(children: <Widget>[Icon(Icons.email), Text(" " + me.email)])
+              ],
+            ),
+          ),
         ],
       ),
     );
