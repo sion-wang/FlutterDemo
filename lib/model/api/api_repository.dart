@@ -8,10 +8,8 @@ import 'package:http/http.dart';
 import 'package:http_interceptor/http_client_with_interceptor.dart';
 import 'package:flutter_demo/model/api/graphql/queries/viewer.dart' as queries;
 
+import '../../local.dart';
 import 'bean/user/user.dart';
-
-// to run the example, replace <YOUR_PERSONAL_ACCESS_TOKEN> with your GitHub token
-const String YOUR_PERSONAL_ACCESS_TOKEN = '<YOUR_PERSONAL_ACCESS_TOKEN>';
 
 class ApiRepository {
   String baseUrl;
