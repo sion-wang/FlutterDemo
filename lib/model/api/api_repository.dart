@@ -6,7 +6,7 @@ import 'package:flutter_demo/model/api/logging_interceptor.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart';
 import 'package:http_interceptor/http_client_with_interceptor.dart';
-import 'package:flutter_demo/model/api/graphql/queries/viewer.dart' as queries;
+import 'package:flutter_demo/model/api/graphql/queries.dart' as queries;
 
 import '../../local.dart';
 import 'bean/user/user.dart';

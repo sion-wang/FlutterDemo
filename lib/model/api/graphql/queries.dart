@@ -19,6 +19,13 @@ query GetMe {
       emoji
       message
     }
+    repositories(first: 10) {
+      totalCount
+      nodes {
+        id
+        name
+      }
+    }
   }
 }
 ''';
