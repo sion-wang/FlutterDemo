@@ -1,5 +1,5 @@
 const String getMe = r'''
-query GetMe {
+query GetMe($repoFirst: Int, $repoAfter: String) {
   viewer {
     login
     name
@@ -19,13 +19,33 @@ query GetMe {
       emoji
       message
     }
-    repositories(first: 10) {
+    repositories(first: $repoFirst, after: $repoAfter) {
       totalCount
-      nodes {
-        id
-        name
+      edges {
+        cursor
+        node {
+          id
+          name
+        }
       }
     }
+  }
+}
+''';
+
+const String queryRepo = r'''
+query QueryRepo($repoFirst: Int, $repoAfter: String) {
+  viewer {
+    repositories(first: $repoFirst, after: $repoAfter) {
+      totalCount
+      edges {
+        cursor
+        node {
+          id
+          name
+        }
+      }
+    }  
   }
 }
 ''';

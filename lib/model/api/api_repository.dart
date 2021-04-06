@@ -67,7 +67,12 @@ class ApiRepository {
 
   Future<QueryResult> getMe() async {
     final WatchQueryOptions options = WatchQueryOptions(
-        document: parseString(queries.getMe), fetchResults: true);
+        document: parseString(queries.getMe),
+        variables: <String, dynamic>{
+          'repoFirst': 5,
+          'repoAfter': "Y3Vyc29yOnYyOpHODsn9XA=="
+        },
+        fetchResults: true);
     return await qlClient.query(options);
   }
 }
