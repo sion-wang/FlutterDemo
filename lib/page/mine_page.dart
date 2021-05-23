@@ -58,7 +58,7 @@ class _MinePageState extends State<MinePage> {
     return Stack(
       children: [
         Container(height: 250, width: double.infinity),
-        Image.asset('assets/cover_1.png',
+        Image.asset('assets/github_doc.png',
             height: 200, width: double.infinity, fit: BoxFit.fill),
         Positioned(
           top: 150,

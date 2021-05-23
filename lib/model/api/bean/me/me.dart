@@ -5,6 +5,7 @@ import 'package:flutter_demo/model/api/bean/following/following.dart';
 import 'package:flutter_demo/model/api/bean/starred/starred_repo.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+///run "flutter pub run build_runner build" to generate me.g.dart
 part 'me.g.dart';
 
 ///   {

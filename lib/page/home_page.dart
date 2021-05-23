@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Flutter Demo'),
+            title: Text('Github'),
           ),
           resizeToAvoidBottomInset: false,
           bottomNavigationBar: _buildBtmNavBar(),
