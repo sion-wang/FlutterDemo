@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_demo/bloc/splash/splash_bloc.dart';
 import 'package:flutter_demo/bloc/splash/splash_event.dart';
@@ -18,11 +19,23 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   late SplashBloc _splashBloc;
 
+  static const platform = const MethodChannel('com.example.flutter_demo/app');
+
+  Future<void> getFreeSpace() async {
+    try {
+      final int result = await platform.invokeMethod('getFreeSpace', {"packagename":"test"});
+      debugPrint('getFreeSpace: $result');
+    } on PlatformException catch (e) {
+      debugPrint('getFreeSpace error: ${e.message}');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _splashBloc = BlocProvider.of<SplashBloc>(context);
     _splashBloc.add(SplashFetchEvent());
+    getFreeSpace();
   }
 
   @override
